@@ -1,0 +1,19 @@
+---
+- name: Set up a web server
+  hosts: all
+  become: yes   # run as root (needed for installing and copying files)
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+
+    - name: Copy website files
+      copy:
+        src: /project/my_website_frontend/
+        dest: /var/www/html/
