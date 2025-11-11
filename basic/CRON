@@ -1,0 +1,17 @@
+---
+- name: Set up cron job
+  hosts: server
+  become: yes
+  tasks:
+    - name: Add cron Job
+      cron:
+        name: Run a script with cron
+        minute: 25
+        hour: 11
+        day: "*"
+        month: "*"
+        weekday: "*"
+        user: root
+        job: /test_ansible/script.sh
+
+crontab -l  # to check a crone job have or not
