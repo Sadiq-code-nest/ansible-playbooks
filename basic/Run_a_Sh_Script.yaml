@@ -1,0 +1,22 @@
+# Run a shell script.
+---
+- name: Test to run an ansible script
+  hosts: server
+  become: yes
+  tasks:
+    - name: Run a shell Script
+      shell: /test_ansible/script.sh
+
+                            
+# Run a Script and set logs to see all 
+---
+- name: Run a script
+  hosts: all
+  tasks:
+    - name: Run script
+      shell: ./test.sh >> test.log
+      args:
+        chdir: /test_ansible
+        creates: test.log
+
+
